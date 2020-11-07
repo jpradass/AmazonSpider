@@ -1,13 +1,21 @@
-import requests
 import adapter.amazon.amazon_sdk as asdk
 
 class Spider:
     
-    def __init__(self, products):
-        self.products = products
-        self.asdk = asdk.AmazonSDK()
+    def __init__(self, jsonf):
+        self.jsonf = jsonf
+        self.lsdk = []
+        
+        for brand in self.jsonf["brands"]:
+            self.lsdk.append(asdk.AmazonSDK(self.jsonf[brand]))
 
     def start(self):
-        self.asdk.set_url("https://www.amazon.es/Seagate-Barracuda-Disco-Interno-cach%C3%A9/dp/B0713R3Y6F/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=seagate+barracuda&qid=1604343012&sr=8-1")
-        self.asdk.make_request()
-        print(self.asdk.get_currentprice()) 
+        for sdk in self.lsdk:
+            for product in sdk.get_products():
+                sdk.set_url(product["url"])
+                sdk.make_request()
+                current_price, min = sdk.get_currentprice(), product["min"]
+                print(product["name"], ":", current_price)
+
+                if min == 0 or current_price < min:
+                    product["min"] = current_price   
