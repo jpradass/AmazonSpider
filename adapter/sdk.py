@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 import requests
-import re
 
 class SDK(ABC):
 
@@ -17,12 +16,9 @@ class SDK(ABC):
         while self.request.status_code != 200:
             self.request = requests.get(self.url, headers=self.headers)
 
+    @abstractmethod
     def get_currentprice(self):
-        if self.request is not None:
-            prices = re.search('\d*,\d{0,2}\s€', self.request.text)
-            return prices.group(0)
-        else:
-            return None
+        pass
 
     @abstractmethod
     def get_products(self):

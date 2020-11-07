@@ -1,13 +1,15 @@
-import adapter.amazon.amazon_sdk as asdk
+from adapter.sdk_factory import SDKFactory
 
 class Spider:
     
     def __init__(self, jsonf):
         self.jsonf = jsonf
         self.lsdk = []
+        self.sdkf = SDKFactory()
         
         for brand in self.jsonf["brands"]:
-            self.lsdk.append(asdk.AmazonSDK(self.jsonf[brand]))
+            self.lsdk.append(self.sdkf.get_sdk(brand, self.jsonf[brand]))
+            # self.lsdk.append(asdk.AmazonSDK(self.jsonf[brand]))
 
     def start(self):
         for sdk in self.lsdk:
@@ -17,5 +19,5 @@ class Spider:
                 current_price, min = sdk.get_currentprice(), product["min"]
                 print(product["name"], ":", current_price)
 
-                if min == 0 or current_price < min:
+                if min == float(0) or current_price < min:
                     product["min"] = current_price   
