@@ -9,9 +9,8 @@ class Spider:
         
         for brand in self.jsonf["brands"]:
             self.lsdk.append(self.sdkf.get_sdk(brand, self.jsonf[brand]))
-            # self.lsdk.append(asdk.AmazonSDK(self.jsonf[brand]))
 
-    def start(self):
+    def crawl(self):
         for sdk in self.lsdk:
             for product in sdk.get_products():
                 sdk.set_url(product["url"])

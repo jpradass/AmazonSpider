@@ -9,4 +9,4 @@ if __name__ == "__main__":
 
     file = open('products.json')
     jsonf = json.load(file)
-    spider.Spider(jsonf).start()
+    spider.Spider(jsonf).crawl()
