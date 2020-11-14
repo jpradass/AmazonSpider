@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 class EbaySDK(SDK):
 
     def __init__(self, products):
-       super().__init__()
+       super().__init__("Ebay")
        self.products = products
 
     def get_currentprice(self):
