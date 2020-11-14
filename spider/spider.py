@@ -16,7 +16,7 @@ class Spider:
                 sdk.set_url(product["url"])
                 sdk.make_request()
                 current_price, min = sdk.get_currentprice(), product["min"]
-                print(product["name"], ":", current_price)
+                print(product["name"], ":", current_price, "€")
 
                 if min == float(0) or current_price < min:
                     product["min"] = current_price   
