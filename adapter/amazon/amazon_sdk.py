@@ -3,9 +3,8 @@ from bs4 import BeautifulSoup
 
 class AmazonSDK(SDK):
 
-    def __init__(self, products):
+    def __init__(self):
        super().__init__("Amazon")
-       self.products = products
 
     def get_currentprice(self):
         if self.request is not None:
@@ -18,6 +17,3 @@ class AmazonSDK(SDK):
             return float(price.text.strip().replace(",", ".")[:-1])
         else:
             return None
-
-    def get_products(self):
-        return self.products

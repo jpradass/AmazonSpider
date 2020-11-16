@@ -6,11 +6,11 @@ class SDKFactory:
     def __init__(self):
         pass
 
-    def get_sdk(self, brand, products):
+    def get_sdk(self, brand):
         if brand == "amazon":
-            return asdk.AmazonSDK(products)
+            return asdk.AmazonSDK()
         elif brand == "ebay":
-            return esdk.EbaySDK(products)
+            return esdk.EbaySDK()
         else:
             return None
 

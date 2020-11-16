@@ -7,7 +7,10 @@ class Configuration:
         if not os.path.exists(file):
             print("{} doesn't have products to watch!".format(file))
             os._exit(1)
-        self.cfile = open(file)
+        self.file = file
 
     def load_configuration(self):
-        return json.load(self.cfile)
+        return json.load(open(self.file, 'r'))
+
+    def save_configuration(self, jobj):
+        json.dump(jobj, open(self.file, 'w+'))
