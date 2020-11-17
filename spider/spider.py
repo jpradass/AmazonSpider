@@ -1,8 +1,9 @@
+from typing import Tuple
 from adapter.sdk_factory import SDKFactory
 
 class Spider:
     
-    def __init__(self, jdata):
+    def __init__(self, jdata) -> None:
         self.jdata = jdata
         self.lsdk = []
         self.sdkf = SDKFactory()
@@ -10,7 +11,7 @@ class Spider:
         for brand in self.jdata["brands"]:
             self.lsdk.append(self.sdkf.get_sdk(brand))
 
-    def crawl(self):
+    def crawl(self) -> Tuple[bool, str]:
         update, msg = False, ""
         for sdk in self.lsdk:
             for product in self.jdata[sdk.get_jsonname()]:

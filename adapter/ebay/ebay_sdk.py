@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 
 class EbaySDK(SDK):
 
-    def __init__(self):
+    def __init__(self) -> None:
        super().__init__("Ebay")
 
-    def get_currentprice(self):
+    def get_currentprice(self) -> float:
         if self.request is not None:
             soup = BeautifulSoup(self.request.text, 'lxml')
             price = soup.find('span', attrs={"id": "prcIsum"})
