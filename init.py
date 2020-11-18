@@ -18,7 +18,8 @@ if __name__ == "__main__":
         logger.info("Mail sent")
         mail_helper.close_connection()
 
-        conf.save_configuration(products)
-        logger.info("Configuration saved")
     else:
         logger.info("Nothing to report")
+    
+    conf.save_configuration(products)
+    logger.info("Configuration saved")
