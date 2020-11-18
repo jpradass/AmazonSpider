@@ -21,11 +21,21 @@ class Spider:
             for product in self.jdata[sdk.get_jsonname()]:
                 sdk.set_url(product["url"])
                 sdk.make_request()
-                current_price, min = sdk.get_currentprice(), product["min"]
+                current_price, min, last_check, desired = sdk.get_currentprice(), product["min"], product["last_check"], product["desired"]
                 
                 if min == float(0) or current_price < min:
                     product["min"] = current_price
                     update = True
-                    msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t|", product["name"], ":", min, "€ ->", current_price, "€")
-        
+                    msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t| New minimum price! --", product["name"], ":", min, "€ ->", current_price, "€")
+                
+                if current_price < last_check and current_price > min:
+                    update = True
+                    msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t| Price drop from last check! --", product["name"], ":", last_check, "€ ->", current_price, "€")
+                
+                if current_price < desired:
+                    update = True
+                    msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t| Price under desired! --", product["name"], ":", desired, "€ (desired) ->", current_price, "€")
+
+                product["last_check"] = current_price
+
         return update, msg
