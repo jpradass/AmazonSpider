@@ -13,7 +13,10 @@ class AmazonSDK(SDK):
             price = soup.find('span', attrs={"id": "price_inside_buybox"})
             if price is None: 
                 price = soup.find('span', attrs={"id": "newBuyBoxPrice"})
-            
-            return float(price.text.strip().replace(",", ".")[:-1])
+
+            try:
+                return float(price.text.strip().replace(",", ".")[:-1])
+            except:
+                return None
         else:
             return None
