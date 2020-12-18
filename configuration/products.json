@@ -1,14 +1,16 @@
 {
     "brands": [
         "amazon",
-        "ebay"
+        "ebay",
+        "pccom",
+        "coolmod"
     ],
     "amazon": [
         {
             "name": "Seagate Barracuda 4TB",
             "url": "https://www.amazon.es/Seagate-Barracuda-Disco-Interno-cach%C3%A9/dp/B0713R3Y6F/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=seagate+barracuda&qid=1604343012&sr=8-1",
             "min": 93.0,
-            "last_check": 93.0,
+            "last_check": 98.39,
             "desired": 85.0
         },
         {
@@ -36,7 +38,7 @@
             "name": "Kingston SSD 480GiB",
             "url": "https://www.amazon.es/Kingston-SSD-A400-Disco-s%C3%B3lido/dp/B01N0TQPQB/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ssd+kingston&qid=1605548275&sr=8-1",
             "min": 47.99,
-            "last_check": 47.99,
+            "last_check": 48.69,
             "desired": 45.0
         }
     ],
@@ -47,6 +49,31 @@
             "min": 36.72,
             "last_check": 36.72,
             "desired": 35.0
+        }
+    ],
+    "pccom": [
+        {
+            "name": "Gigabyte B550M Aorus Elite",
+            "url": "https://www.pccomponentes.com/gigabyte-b550m-aorus-elite",
+            "min": 101.89,
+            "last_check": 101.89,
+            "desired": 95.0
+        },
+        {
+            "name": "Kingston SSD 480GiB",
+            "url": "https://www.pccomponentes.com/kingston-a400-ssd-480gb",
+            "min": 46.94,
+            "last_check": 46.94,
+            "desired": 45.0
+        }
+    ],
+    "coolmod": [
+        {
+            "name": "Glorious GMMK Compact ISO",
+            "url": "https://www.coolmod.com/glorious-pc-gaming-race-gmmk-compact-iso-layout-teclado-precio",
+            "min": 67.95,
+            "last_check": 67.95,
+            "desired": 60.0
         }
     ]
 }

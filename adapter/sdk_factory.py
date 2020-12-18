@@ -1,6 +1,8 @@
 from adapter.sdk import SDK
 import adapter.amazon.amazon_sdk as asdk
 import adapter.ebay.ebay_sdk as esdk
+import adapter.pccom.pccom_sdk as pcsdk
+import adapter.coolmod.coolmod_sdk as cmsdk
 
 class SDKFactory:
 
@@ -12,6 +14,10 @@ class SDKFactory:
             return asdk.AmazonSDK()
         elif brand == "ebay":
             return esdk.EbaySDK()
+        elif brand == "pccom":
+            return pcsdk.PcCOMSDK()
+        elif brand == "coolmod":
+            return cmsdk.CoolModSDK()
         else:
             return None
 

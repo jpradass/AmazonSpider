@@ -29,7 +29,7 @@ class Spider:
                         update = True
                         msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t| New minimum price! --", product["name"], ":", min, "€ ->", current_price, "€")
                     
-                    if current_price < last_check and current_price > min:
+                    if current_price < last_check and current_price >= min:
                         update = True
                         msg += "{}{} {}{} {}{} {}{}\n".format(sdk.get_name(), "\t| Price drop from last check! --", product["name"], ":", last_check, "€ ->", current_price, "€")
                     
