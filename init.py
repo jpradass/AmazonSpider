@@ -10,7 +10,7 @@ if __name__ == "__main__":
     logger.info("Configuration loaded")
 
     update, msg = spider.Spider(products).crawl()
-    if update:
+    if len(update) > 0:
         logger.info("Products to report")
         mail_helper = MailHelper()
         mail_helper.send_mail('', msg, "New prices lower")
