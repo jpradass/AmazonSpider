@@ -1,15 +1,18 @@
 from helper.logger_helper import Log
 from helper.mail_helper import MailHelper
 import spider.spider as spider
-import configuration.configuration_handler as configuration_handler
+from configuration.configuration_handler import Configuration
+from configuration.products_handler import ProductsHandler
 
 if __name__ == "__main__":
     logger = Log()
-    conf = configuration_handler.Configuration('configuration/products.json')
-    products = conf.load_configuration()
+    conf = Configuration('configuration/configuration.yaml').load_configuration()
+    ph = ProductsHandler(conf["products_path"]) 
     logger.info("Configuration loaded")
+    products = ph.load_products()
+    logger.info("Products loaded from {}".format(conf["products_path"]))
 
-    update, msg = spider.Spider(products).crawl()
+    update, msg = spider.Spider(products, conf).crawl()
     if len(update) > 0:
         logger.info("Products to report")
         mail_helper = MailHelper()
@@ -21,5 +24,7 @@ if __name__ == "__main__":
     else:
         logger.info("Nothing to report")
     
-    conf.save_configuration(products)
+    ph.save_products(products)
     logger.info("Configuration saved")
+else:
+    print("Exec this file as the main entrypoint! -> python3 init.py")
