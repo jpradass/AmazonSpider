@@ -13,9 +13,8 @@ class GrafanaLogger:
         self.logger = Log()
 
     def update_product(self, product: Dict) -> None:
-        body = "{} value={}".format(product["name"].replace(" ", "_"), product["price"])
-        res = requests.post("http://{}:{}/write?db={}".format(self.influx.get_host(), str(self.influx.get_port()), self.influx.get_db()), data=body)
-        print(res.status_code, ":", str(res.content))   
+        body = "{},store={} value={}".format(product["name"].replace(" ", "_"), product["store"], product["price"])
+        res = requests.post("http://{}:{}/write?db={}".format(self.influx.get_host(), str(self.influx.get_port()), self.influx.get_db()), data=body)  
 
     def healthcheck(self) -> bool:
         return requests.get("http://{}:{}".format(self.host, str(self.port))).status_code == 200

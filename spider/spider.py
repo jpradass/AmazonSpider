@@ -30,7 +30,8 @@ class Spider:
                 current_price, min, last_check, desired = sdk.get_currentprice(), product["min"], product["last_check"], product["desired"]
                 
                 if current_price is not None:
-                    po = {"name": product["name"], "price": current_price, "url": product["url"]}
+                    po = {"name": product["name"], "price": current_price, "url": product["url"], "store": sdk.get_jsonname()}
+                    
                     if min == float(0) or current_price < min:
                         product["min"] = current_price
                         update.append(po) 
